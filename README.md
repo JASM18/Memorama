@@ -5,8 +5,7 @@
 ![Windows](https://img.shields.io/badge/Windows-Supported-blue.svg)
 ![Code::Blocks](https://img.shields.io/badge/Code%3A%3ABlocks-25.03-green.svg)
 
-Juego de memorama desarrollado en **C++ con raylib**, como proyecto de aprendizaje de
-tres estudiantes.
+Juego de memorama desarrollado en **C++ con raylib**.
 
 ## Requisitos del sistema
 
@@ -14,11 +13,8 @@ tres estudiantes.
 |---|---|---|
 | Code::Blocks | **25.03** | IDE y compilador (trae MinGW-W64 14.2.0 UCRT) |
 | Git | Cualquiera reciente | Clonar el repositorio |
-| raylib | 6.0 | **Ya viene incluida en `libs/raylib/`** — no hay que instalarla |
 
 ## Instalación
-
-Son dos pasos. No hay que descargar ni compilar raylib.
 
 ### 1. Instalar Code::Blocks 25.03
 
@@ -36,14 +32,12 @@ codeblocks-25.03mingw-setup.exe
 ### 2. Clonar y abrir
 
 ```bash
-git clone https://github.com/JASM18/memorama.git
-cd memorama
+git clone https://github.com/JASM18/Memorama.git
+cd Memorama
 ```
 
 Abre `Memorama.cbp` con Code::Blocks y presiona **F9** (Build and run). Debería abrirse
 una ventana del juego.
-
-Eso es todo.
 
 ## Estructura del proyecto
 
