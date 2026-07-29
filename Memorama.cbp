@@ -43,6 +43,8 @@
 		</Linker>
 		<Unit filename="Aleatorio.cpp" />
 		<Unit filename="Aleatorio.hpp" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>

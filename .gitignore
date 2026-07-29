@@ -10,16 +10,17 @@ obj/
 *.layout
 *.depend
 
-# Documentacion
+# Documentacion generada por Doxygen (la escrita a mano SI se sube)
 html/
 latex/
-*.md
 
 # Archivos de otros editores
 .vscode/
 .idea/
 .vs/
 *.user
+.claude/
+CLAUDE.md
 
 # Basura del sistema operativo
 Thumbs.db

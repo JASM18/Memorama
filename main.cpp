@@ -10,15 +10,16 @@
 #include "raylib.h"
 #include <iostream>
 
+#include "Menu.hpp"
+
 // ***********************************************
 // CONFIGURACION DE LA VENTANA
 // ***********************************************
 
 // Mas adelante estos valores saldran del archivo de tema (tema.json), para que el tamano de la ventana se pueda ajustar sin recompilar.
 
-int PantallaAncho = 1280;
-int PantallaAlto = 720;
-
+const int PantallaAncho = 1280;
+const int PantallaAlto = 720;
 const int FPS = 60;
 
 using namespace std;
@@ -31,27 +32,58 @@ int main()
     // Nota: nada de raylib funciona antes de esta llamada: dibujar o cargar texturas
     InitWindow(PantallaAncho, PantallaAlto, "Memorama epico papus");
 
-    // Limita el bucle a 60 fps. Sin esto el bucle corre tan rapido como pueda el CPU: consume el procesador al 100% sin necesidad
-    // Si no se hace, entonces la velocidad del juego dependeria de que tan potente sea cada PC (Como en Geometry Dash xd)
-    SetTargetFPS(FPS);
+    SetTargetFPS(FPS); // Se establece el juego a 60 fps
 
-    // WindowShouldClose() devuelve true cuando el usuario cierra la ventana o
-    // presiona ESC. Este es el "bucle de juego": se repite una vez por cuadro.
+    Escena_Estado escenaActual = Escena_menu;
+
+    // Loop principal del juego
     while(!WindowShouldClose()){
 
-        // Todo lo que se dibuja va entre BeginDrawing y EndDrawing.
-        // raylib dibuja sobre un buffer oculto y lo muestra completo al final
-        // (doble buffer); por eso no se ve parpadeo mientras se pinta.
-        BeginDrawing();
+        switch(escenaActual)
+        {
+            case Escena_juego:
 
-            ClearBackground(RAYWHITE);  // Se limpia el cuadro anterior
-            DrawText("raylib esta funcionando", 260, 300, 24, DARKGRAY);
+            break;
+
+            case Escena_configuracion:
+
+            break;
+
+            case Escena_puntajes:
+
+            break;
+
+            case Escena_creditos:
+
+            break;
+
+            default: break;
+        }
+
+
+
+        // Todo lo que se dibuja va entre BeginDrawing y EndDrawing
+        BeginDrawing();
+            ClearBackground(RAYWHITE);
+
+            switch(escenaActual)
+            {
+                case Escena_menu:
+                    DrawText("PANTALLA DE MENU PRINCIPAL", 260, 300, 24, DARKGRAY);
+                    DrawText("Presiona ENTER para jugar (Pronto...)", 260, 350, 20, GRAY);
+                break;
+
+                case Escena_juego:
+                    DrawText("AQUI VA EL TABLERO DEL JUEGO", 260, 300, 24, DARKBLUE);
+                break;
+
+                default: break;
+            }
 
         EndDrawing();
     }
 
-    // Libera la ventana y el contexto de OpenGL. Es la contraparte de InitWindow.
-    CloseWindow();
+    CloseWindow(); // Cierra la ventana
 
     cout << "\n\nEl programa se acabo!" << endl;
     system("pause");
