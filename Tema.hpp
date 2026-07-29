@@ -1,0 +1,29 @@
+/**
+ * \file Tema.hpp
+ * \brief Paleta de colores del juego, declarada en un solo lugar.
+ * \author S&aacute;nchez Montoy, Jes&uacute;s Axel
+ * \author Helleon Cardenas, Alba Rosa
+ * \author Chenoweth Galaz, Ivana Lin
+ * \date 29/07/2026
+ */
+
+#ifndef TEMA_HPP_INCLUDED
+#define TEMA_HPP_INCLUDED
+
+#include "raylib.h"
+
+// Los colores viven aqui y no regados por los archivos que dibujan. Cambiar el
+// aspecto del juego debe ser editar este archivo, no salir a cazar literales.
+//
+// Mas adelante estos valores saldran de tema.json y se podran cambiar sin
+// recompilar, que es lo que le permitira a la companera de arte trabajar sin
+// tocar C++. Por ahora son constantes: mismo lugar, mismo proposito, un paso
+// menos de complejidad.
+
+const Color COLOR_FONDO     = {  30,  30,  46, 255 };   ///< Fondo de todas las pantallas
+const Color COLOR_TITULO    = { 203, 166, 247, 255 };   ///< T&iacute;tulos grandes
+const Color COLOR_TEXTO     = { 166, 173, 200, 255 };   ///< Texto normal
+const Color COLOR_SELECCION = { 137, 180, 250, 255 };   ///< Opci&oacute;n resaltada del men&uacute;
+const Color COLOR_TENUE     = { 108, 112, 134, 255 };   ///< Ayudas y notas al pie
+
+#endif // TEMA_HPP_INCLUDED

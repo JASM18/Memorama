@@ -4,13 +4,15 @@
  * \author S&aacute;nchez Montoy, Jes&uacute;s Axel
  * \author Helleon Cardenas, Alba Rosa
  * \author Chenoweth Galaz, Ivana Lin
- * \date 28/07/2026
+ * \date 29/07/2026
  */
 
 #include "raylib.h"
 #include <iostream>
 
 #include "Menu.hpp"
+#include "Dibujo.hpp"
+#include "Tema.hpp"
 
 // ***********************************************
 // CONFIGURACION DE LA VENTANA
@@ -29,52 +31,72 @@ using namespace std;
 int main()
 {
     // InitWindow crea la ventana
-    // Nota: nada de raylib funciona antes de esta llamada: dibujar o cargar texturas
     InitWindow(PantallaAncho, PantallaAlto, "Memorama epico papus");
-
     SetTargetFPS(FPS); // Se establece el juego a 60 fps
+
+    // Por defecto WindowShouldClose() tambien es verdadero al presionar ESC, no
+    // solo al cerrar la ventana. Como nosotros queremos usar ESC para regresar al
+    // menu, hay que quitarle ese trabajo. Sin esta linea, ESC cierra el juego.
+    SetExitKey(KEY_NULL);
 
     Escena_Estado escenaActual = Escena_menu;
 
     // Loop principal del juego
-    while(!WindowShouldClose()){
+    // Se sale por la X de la ventana o cuando el menu pide Escena_salir.
+    while(!WindowShouldClose() && escenaActual != Escena_salir){
 
+        // -------------------------------------------
+        // ACTUALIZAR: leer entrada y cambiar el estado
+        // -------------------------------------------
         switch(escenaActual)
         {
-            case Escena_juego:
-
+            case Escena_menu:
+                // El menu se encarga de su propia navegacion y nos devuelve a
+                // donde hay que ir. Si nadie eligio nada, devuelve Escena_menu
+                // y aqui no cambia nada.
+                escenaActual = ActualizarMenu();
             break;
 
+            // Estas pantallas todavia no existen, asi que por ahora se comportan
+            // igual: ESC regresa al menu. Conforme cada una se implemente, saldra
+            // de esta lista y tendra su propio case.
             case Escena_configuracion:
-
-            break;
-
             case Escena_puntajes:
-
-            break;
-
             case Escena_creditos:
-
+            case Escena_juego:
+                if(IsKeyPressed(KEY_ESCAPE)) escenaActual = Escena_menu;
             break;
 
             default: break;
         }
 
-
-
+        // -------------------------------------------
+        // DIBUJAR: pintar el estado, sin modificarlo
+        // -------------------------------------------
         // Todo lo que se dibuja va entre BeginDrawing y EndDrawing
         BeginDrawing();
-            ClearBackground(RAYWHITE);
+            ClearBackground(COLOR_FONDO);
 
             switch(escenaActual)
             {
                 case Escena_menu:
-                    DrawText("PANTALLA DE MENU PRINCIPAL", 260, 300, 24, DARKGRAY);
-                    DrawText("Presiona ENTER para jugar (Pronto...)", 260, 350, 20, GRAY);
+                    DibujarMenu();
+                break;
+
+                case Escena_configuracion:
+                    dibujarPantallaPendiente("CONFIGURAR PARTIDA");
+                break;
+
+                case Escena_puntajes:
+                    dibujarPantallaPendiente("MEJORES PUNTAJES");
+                break;
+
+                case Escena_creditos:
+                    dibujarPantallaPendiente("CREDITOS");
                 break;
 
                 case Escena_juego:
-                    DrawText("AQUI VA EL TABLERO DEL JUEGO", 260, 300, 24, DARKBLUE);
+                    dibujarPantallaPendiente("TABLERO DEL JUEGO");
                 break;
 
                 default: break;
@@ -85,7 +107,7 @@ int main()
 
     CloseWindow(); // Cierra la ventana
 
-    cout << "\n\nEl programa se acabo!" << endl;
-    system("pause");
+    //cout << "\n\nEl programa se acabo!" << endl;
+    //system("pause");
     return 0;
 }
