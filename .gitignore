@@ -1,0 +1,27 @@
+
+# Resultados de compilacion
+bin/
+obj/
+*.o
+*.obj
+*.exe
+
+# Estado personal de Code::Blocks
+*.layout
+*.depend
+
+# Documentacion
+html/
+latex/
+*.md
+
+# Archivos de otros editores
+.vscode/
+.idea/
+.vs/
+*.user
+
+# Basura del sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
