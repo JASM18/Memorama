@@ -64,7 +64,11 @@ int main()
             case Escena_puntajes:
             case Escena_creditos:
             case Escena_juego:
-                if(IsKeyPressed(KEY_ESCAPE)) escenaActual = Escena_menu;
+
+                if(IsKeyPressed(KEY_ESCAPE)){
+                    escenaActual = Escena_menu;
+                }
+
             break;
 
             default: break;
